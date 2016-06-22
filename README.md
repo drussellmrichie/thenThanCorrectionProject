@@ -1,4 +1,4 @@
-# thenThanCorrectionProject
+# Then/Than Correction Project
 
 ### The problem
 
