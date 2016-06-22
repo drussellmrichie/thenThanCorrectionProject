@@ -6,9 +6,9 @@ It turns out that 'then' and 'than' often occur in different sentence contexts. 
 
 Well, maybe! The scripts in this project are an attempt at this:
 
-* thenThanClassifierForPRAW.py trains a Random Forest Classifier (from Scikit-Learn) to predict usage of 'then' or 'than' based on surrounding part of speech tags.
-* detectThenThanComment.py uses that classifier to predict 'then' or 'than' usage for new sentences.
-* ThenThanCommentCorrecterSHORTENED.py uses PRAW to grab comments from reddit.com/r/all, and then uses the above detector to determine whether 'then' or 'than' usage was correct.
+* **thenThanClassifierForPRAW.py** trains a Random Forest Classifier (from Scikit-Learn) to predict usage of 'then' or 'than' based on surrounding part of speech tags.
+* **detectThenThanComment.py** uses that classifier to predict 'then' or 'than' usage for new sentences.
+* **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from reddit.com/r/all, and then uses the above detector to determine whether 'then' or 'than' usage was correct.
 
 So how well does this work? Okay, but not great. It turns out (from manual inspection) that most usages of 'then' and 'than' on /r/all are correct, and thankfully, these scripts don't turn up too many corrections. For the few corrections that are identified, some are true, and some are false. So hmmm.
 
