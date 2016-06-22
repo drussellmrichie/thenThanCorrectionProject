@@ -16,7 +16,7 @@ This repo contains the following:
 
 * **thenThanClassifierForPRAW.py** trains a Random Forest Classifier (from Scikit-Learn) to predict usage of 'then' or 'than' based on surrounding part of speech tags. This gets about 94% accuracy on a held-out test set of 'then' and 'than' usages. If you run this script by itself, you'll execute some tests/exploration of the classifier.
 * **detectThenThanComment.py** uses that classifier to predict 'then' or 'than' usage for new sentences.
-* **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from [reddit.com/r/all](reddit.com/r/all), and then uses the above detector to determine whether 'then' or 'than' usage was correct.
+* **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from [reddit.com/r/all](http:/reddit.com/r/all), and then uses the above detector to determine whether 'then' or 'than' usage was correct.
 
 So if you just clone this repo and run:
 
