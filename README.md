@@ -18,7 +18,11 @@ This repo contains the following:
 * **detectThenThanComment.py** uses that classifier to predict 'then' or 'than' usage for new sentences.
 * **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from [reddit.com/r/all](reddit.com/r/all), and then uses the above detector to determine whether 'then' or 'than' usage was correct.
 
-So if you just clone this repo and run "python ThenThanCommentCorrecterSHORTENED.py", it should work. If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
+So if you just clone this repo and run:
+
+`python ThenThanCommentCorrecterSHORTENED.py`
+
+Then it should work. If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
 
 ### Brief assessment / Future plans
 
