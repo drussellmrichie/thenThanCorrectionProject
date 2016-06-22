@@ -18,9 +18,11 @@ This repo contains the following:
 * **detectThenThanComment.py** uses that classifier to predict 'then' or 'than' usage for new sentences.
 * **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from [reddit.com/r/all](reddit.com/r/all), and then uses the above detector to determine whether 'then' or 'than' usage was correct.
 
+So if you just clone this repo and run "python ThenThanCommentCorrecterSHORTENED.py", it should work. If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
+
 ### Brief assessment / Future plans
 
-So how well does this work? Okay, but not great. It turns out (from manual inspection) that most usages of 'then' and 'than' on /r/all are correct, and thankfully, these scripts don't turn up too many corrections. For the few corrections that are identified, some are true, and some are false (though I haven't done any systematic analysis of this yet). So hmmm.
+So how well does this work? Decently, but not super great. It turns out (from manual inspection) that most usages of 'then' and 'than' on /r/all are correct, and thankfully, these scripts don't turn up too many corrections. For the few corrections that are identified, some are true, and some are false (though I haven't done any systematic analysis of this yet). So hmmm.
 
 We can probably do better. I could train the classifier on a bigger corpus, maybe on one drawn from social media like reddit (cf the Brown corpus, which I'm using now). I could train the classifier on a bigger context/window around 'then'/'than' (right now, we just look at two words to the left and two words to the right). I could make a better PoS (noun, verb, adjective, etc.) tagger (see the comments in the scripts themselves for discussion of how to approach PoS tagging).
 
