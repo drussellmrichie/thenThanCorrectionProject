@@ -14,7 +14,8 @@ I wrote this while using Python 3.5.1. In addition to some standard libraries, y
 
 This repo contains the following:
 
-* **thenThanClassifierForPRAW.py** trains a Random Forest Classifier (from Scikit-Learn) to predict usage of 'then' or 'than' based on surrounding part of speech tags. This gets about 94% accuracy on a held-out test set of 'then' and 'than' usages. If you run this script by itself, you'll execute some tests/exploration of the classifier.
+* **thenThanClassifierForPRAW.py** trains a Random Forest Classifier (from Scikit-Learn) to predict usage of 'then' or 'than' based on surrounding part of speech tags. This gets about 94% accuracy on a held-out test set of 'then' and 'than' usages. If you run this script by itself, you'll execute some tests/exploration of the classifier. You should get output like this:
+![Sample classifier output](https://github.com/drussellmrichie/thenThanCorrectionProject/blob/master/classifierTestingSampleOutput.png)
 * **detectThenThanComment.py** uses that classifier to predict 'then' or 'than' usage for new sentences.
 * **ThenThanCommentCorrecterSHORTENED.py** uses PRAW to grab comments from [reddit.com/r/all](http:/reddit.com/r/all), and then uses the above detector to determine whether 'then' or 'than' usage was correct.
 
@@ -22,7 +23,11 @@ So if you just clone this repo and run:
 
 `python ThenThanCommentCorrecterSHORTENED.py`
 
-Then it should work. If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
+Then it should work. As it processes individual comments, you should see something like this:
+
+![Sample comment corrector output](https://github.com/drussellmrichie/thenThanCorrectionProject/blob/master/commentCorrecterSampleOutput.png)
+
+If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
 
 ### Brief assessment / Future plans
 
