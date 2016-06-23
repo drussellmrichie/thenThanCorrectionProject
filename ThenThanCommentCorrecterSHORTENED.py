@@ -11,16 +11,16 @@ from nltk.corpus import brown
 from nltk.tokenize import word_tokenize
 
 if ('make_thenThan_classifier' not in dir()) or ('detectThenThanComment' not in dir()):
-	try:
-    	from thenThanClassifierForPRAW import make_thenThan_classifier
-    	from detectThenThanComment import detectThenThanComment
-	except ImportError:
-    	print("Could not import functions. Are you running this script from Rodeo IDE? \
-        	   Either run this from terminal, or run the scripts from which you are \
-           	   importing, and then run this script again")
+    try:
+        from thenThanClassifierForPRAW import make_thenThan_classifier
+        from detectThenThanComment import detectThenThanComment
+    except ImportError:
+        print("Could not import functions. Are you running this script from Rodeo IDE? \
+               Either run this from terminal, or run the scripts from which you are \
+               importing, and then run this script again")
 
-# In redditPOStagger.py, determined that a unigram tagger with NN default backoff trained
-# on brown corpus got about 90% tags right. I suspect this will work pretty well here.
+# In other testing, I determined that a unigram tagger with NN default backoff trained
+# on brown corpus got about 90% of tags right. I suspect this will work pretty well here.
 #
 # I decided to try the unigram tagger with regex backoff for reasons.
 patterns = [
@@ -48,9 +48,9 @@ r.set_oauth_app_info(client_id='_T1U9A4zHwgzvA',
                                   'authorize_callback')
                                   
 # need to pass the below method all the 'scopes' that I need: the kinds of 
-# things I want to do when interacting with reddit...I'm giving more scopes
-# than necessary at the moment
-url = r.get_authorize_url('uniqueKey', 'history identity read submit', True)
+# things I want to do when interacting with reddit...
+#url = r.get_authorize_url('uniqueKey', 'history identity read submit', True)
+url = r.get_authorize_url('uniqueKey', 'identity read', True)
 webbrowser.open(url)
 
 try:
