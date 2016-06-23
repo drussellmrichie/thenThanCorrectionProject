@@ -8,7 +8,7 @@ It turns out that 'then' and 'than' often occur in different sentence contexts. 
 
 ### Package requirements
 
-I wrote this while using Python 3.5.1. In addition to some standard libraries, you'll need NLTK, Pandas, Scikit-Learn, and PRAW.
+I wrote this while using Python 3.5.1. In addition to some standard libraries, you'll need NLTK, Pandas, Scikit-Learn, and PRAW. If you've never used PRAW before, [you may have to do some registration first](http://praw.readthedocs.io/en/stable/pages/oauth.html).
 
 ### The present scripts
 
@@ -23,11 +23,9 @@ So if you just clone this repo and run:
 
 `python ThenThanCommentCorrecterSHORTENED.py`
 
-Then it should work. As it processes individual comments, you should see something like this:
+Then it should work. In the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW. As the script processes individual comments, you should see something like this:
 
 ![Sample comment corrector output](https://github.com/drussellmrichie/thenThanCorrectionProject/blob/master/commentCorrecterSampleOutput.png)
-
-If you haven't used PRAW before, you may have to do some setup there beforehand. In addition, in the middle of the script, a browser window will pop up and give you an access code which you'll give back to the script (as user input) to allow you to access reddit via PRAW.
 
 ### Brief assessment / Future plans
 
