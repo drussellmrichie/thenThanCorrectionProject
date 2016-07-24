@@ -105,6 +105,7 @@ if __name__ == "__main__":
     for ys in [y_pred, y_test]:
         ys.replace({0:'then',1:'than'}, inplace=True)
         
+    print("\nA confusion matrix between predictions and actual 'thens' and 'thans':")
     print(pd.crosstab(y_test, y_pred))
     # evenly split between false negatives and false positives...and very few of each!
 
@@ -118,7 +119,7 @@ if __name__ == "__main__":
     colsWithImportances = sorted(colsWithImportances, key = lambda x: x[1], reverse=True)
 
     importances = pd.DataFrame(colsWithImportances, columns = ['Feature','Importance'])
-    print(importances.head(10))        
+    print("\n",importances.head(10))        
     """
     Completely sensible results here -- a conjunction (CC) or comma in slot -1 is very
     informative, strongly predicting usage of 'then'. Contrast 'and then' or ', then'
