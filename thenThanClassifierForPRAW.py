@@ -101,8 +101,11 @@ if __name__ == "__main__":
 
     # make a confusion matrix so we can see TP, FP, etc rates.
     y_pred = clf.predict(X_test)
-    print("Here's a confusion matrix (not helpfully annotated, I grant)")
-    print(confusion_matrix(y_test, y_pred))
+    y_pred = pd.Series(y_pred, name="th{e|a}n'_pred", index=y_test.index)
+    for ys in [y_pred, y_test]:
+        ys.replace({0:'then',1:'than'}, inplace=True)
+        
+    print(pd.crosstab(y_test, y_pred))
     # evenly split between false negatives and false positives...and very few of each!
 
     """
