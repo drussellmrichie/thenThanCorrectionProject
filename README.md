@@ -40,3 +40,5 @@ Maybe at some point I'll also put this into a proper Reddit bot that will respon
 ### Acknowledgment(s)
 
 Many thanks to [Brad Ziolko](https://github.com/bradziolko/) for inspiring this project. He implemented a then/than correcting Reddit bot in a somewhat different way, not utilizing NLP and machine learning. Check out [this reddit thread](https://www.reddit.com/r/cscareerquestions/comments/4o7r89/would_a_reddit_bot_be_an_appropriate_personal/) for some explanation of how his bot works (pretty well, it turns out!).
+
+Thanks also to [Karl Debiec](https://github.com/KarlTDebiec) for reviewing the code/repo and suggesting some improvements.
