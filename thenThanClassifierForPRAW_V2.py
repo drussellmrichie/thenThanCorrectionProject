@@ -9,8 +9,9 @@ comments which used 'then' or 'than', and see whether they should be corrected.
 
 from nltk.corpus import brown
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction import DictVectorizer
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import Pipeline
 
 def make_thenThan_classifier(window=2, n_estimators=20):
     """
@@ -64,7 +65,8 @@ def make_thenThan_classifier(window=2, n_estimators=20):
 
     allData = thenData.append(thanData)
     allData.drop('Slot0', axis=1, inplace=True)
-
+    
+    """
     # convert categorical labels to one-hot encoding/dummy variables and specify the input
     # and output of the model
 
@@ -76,6 +78,22 @@ def make_thenThan_classifier(window=2, n_estimators=20):
     # now select and fit a model
     clf = RandomForestClassifier(n_estimators=n_estimators)
     clf.fit(X,y)
+    """
+    
+    # The block below is an attempt, following this SO post, to circumvent the nasty
+    # dummy encoding wrangling I had to do previously
+    # http://stackoverflow.com/questions/38574222/onehotencoded-features-causing-error-when-input-to-classifier/38587625#38587625
+    
+    X = allData.loc[:,:'Slot2']
+    y = allData['th{e|a}n']
+    clf = Pipeline([
+                    ('transformer', DictVectorizer()),
+                    ('estimator', RandomForestClassifier()),
+                    ]
+                   )
+    print(y.head())
+    print(X.head())
+    clf.set_params(estimator__n_estimators=n_estimators).fit(X,y)
     
     return (clf, dummyData, allData)
     
@@ -83,9 +101,9 @@ if __name__ == "__main__":
 
     import time
     from sklearn.cross_validation import train_test_split
+    from sklearn.metrics import confusion_matrix
 
-    testingWindow = 2 # a little bit of testing revealed that 3 was worse than 2, probably
-                      # due to sparsity of training data inherent in text
+    testingWindow = 2
     startTime = time.time()
     print("Now making and training a classifier")
     clf, dummyData, allData = make_thenThan_classifier(window=testingWindow)
@@ -107,15 +125,15 @@ if __name__ == "__main__":
     print("On test data, classifier accuracy was:", clf.score(X_test,y_test))
     # Should give accuracy around 94%
 
-    # make a confusion matrix so we can see error patterns.
+    # make a confusion matrix so we can see TP, FP, etc rates.
     y_pred = clf.predict(X_test)
     y_pred = pd.Series(y_pred, name="th{e|a}n'_pred", index=y_test.index)
     for ys in [y_pred, y_test]:
         ys.replace({0:'then',1:'than'}, inplace=True)
         
-    print("\nA confusion matrix between predicted and actual 'thens' and 'thans':")
+    print("\nA confusion matrix between predictions and actual 'thens' and 'thans':")
     print(pd.crosstab(y_test, y_pred))
-    # evenly split between false corrections of 'then' and 'than'...and very few of each!
+    # evenly split between false negatives and false positives...and very few of each!
 
     """
     Let's look at feature importances to make sure those are sensible.
@@ -126,7 +144,7 @@ if __name__ == "__main__":
     colsWithImportances = list(zip(dummyData.columns[1:],clf.feature_importances_))
     colsWithImportances = sorted(colsWithImportances, key=lambda x: x[1], reverse=True)
 
-    importances = pd.DataFrame(colsWithImportances, columns=['Feature','Importance'])
+    importances = pd.DataFrame(colsWithImportances, columns = ['Feature','Importance'])
     print("\n",importances.head(10))        
     """
     Completely sensible results here -- a conjunction (CC) or comma in slot -1 is very

@@ -15,9 +15,9 @@ if ('make_thenThan_classifier' not in dir()) or ('detectThenThanComment' not in 
         from thenThanClassifierForPRAW import make_thenThan_classifier
         from detectThenThanComment import detectThenThanComment
     except ImportError:
-        print("Could not import functions. Are you running this script from Rodeo IDE? \
-               Either run this from terminal, or run the scripts from which you are \
-               importing, and then run this script again")
+        print("Could not import functions. Are you running this script from Rodeo IDE? "
+              "Either run this from terminal, or run the scripts from which you are "
+              "importing, and then run this script again")
 
 # In other testing, I determined that a unigram tagger with NN default backoff trained
 # on brown corpus got about 90% of tags right. I suspect this will work pretty well here.
@@ -67,8 +67,8 @@ authenticated_user = r.get_me()
 # Now should have OAuth and be able to access
 window = 2
 n_estimators = 20
-clf, dummyData, allData = make_thenThan_classifier(window = window, 
-                                                   n_estimators = n_estimators
+clf, dummyData, allData = make_thenThan_classifier(window=window, 
+                                                   n_estimators=n_estimators
                                                    )
 
 print("Finished making then/than classifier...")
@@ -79,7 +79,7 @@ all_comments = r.get_comments('all', limit = None)
 
 for comment in all_comments:
     for word in ['then', 'than']:
-        detectThenThanComment(word = word, window = window, pos_tagger = pos_tagger, 
-                              commentText = comment.body, allData = allData, 
-                              dummyData = dummyData, tokenizeFunction = word_tokenize,
-                              clf = clf, confidenceLevel = 0.3)
+        detectThenThanComment(word=word, window=window, pos_tagger=pos_tagger, 
+                              commentText=comment.body, allData=allData, 
+                              dummyData=dummyData, tokenizeFunction=word_tokenize,
+                              clf=clf, confidenceLevel=0.3)
